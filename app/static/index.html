@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Derivative</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <div class="top">
+      <a class="brand" href="#/explore">Derivative</a>
+      <label class="model">Model
+        <select id="model" aria-label="Model used for LLM tasks"></select>
+      </label>
+    </div>
+    <nav>
+      <a href="#/explore" data-route="explore">Explore</a>
+      <a href="#/ideas" data-route="ideas">My ideas</a>
+      <a href="#/discover" data-route="discover">Discover</a>
+    </nav>
+  </header>
+  <div id="notice" class="notice" hidden></div>
+  <main id="view"></main>
+  <script type="module" src="/static/app.js"></script>
+</body>
+</html>
