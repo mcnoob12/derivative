@@ -1,10 +1,10 @@
 :root {
   --bg: #fbfaf8; --panel: #ffffff; --text: #1d1d1b; --muted: #6b6a66; --line: #e2dfd8;
-  --accent: #2f5d50; --accent-text: #ffffff; --warn: #9a5b00; --soft: #f1eee8;
+  --accent: #2f5d50; --accent-text: #ffffff; --warn: #9a5b00; --danger: #b3261e; --soft: #f1eee8;
 }
 @media (prefers-color-scheme: dark) {
   :root { --bg: #161615; --panel: #1f1f1d; --text: #ecebe7; --muted: #a09e97; --line: #34332f;
-          --accent: #7fc0ab; --accent-text: #10201b; --warn: #e0a850; --soft: #2a2927; }
+          --accent: #7fc0ab; --accent-text: #10201b; --warn: #e0a850; --danger: #e57373; --soft: #2a2927; }
 }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
@@ -13,12 +13,14 @@ header { border-bottom: 1px solid var(--line); background: var(--panel); positio
 .top { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-top: 10px; }
 .brand { font-weight: 700; font-size: 1.15rem; color: var(--text); text-decoration: none; }
 .model { font-size: .8rem; color: var(--muted); display: flex; align-items: center; gap: 6px; min-width: 0; }
-.model select { max-width: 210px; }
+.model select { max-width: 230px; }
 nav { display: flex; gap: 4px; padding-top: 8px; }
 nav a { padding: 8px 12px; color: var(--muted); text-decoration: none; border-bottom: 2px solid transparent; }
 nav a.active { color: var(--text); border-color: var(--accent); font-weight: 600; }
 main { padding-top: 20px; padding-bottom: 80px; }
-.notice { margin-top: 12px; padding: 10px 14px; background: var(--soft); border: 1px solid var(--line); border-radius: 8px; font-size: .95rem; }
+.notice { margin-top: 12px; padding: 10px 14px; background: var(--soft); border: 1px solid var(--line); border-radius: 8px; font-size: .92rem; line-height: 1.5; }
+.notice code { font: .86em ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--panel); padding: 1px 5px; border-radius: 4px; }
+.inline-btn { min-height: 0; padding: 3px 10px; font-size: .86rem; margin-left: 4px; }
 h1 { font-size: 1.35rem; margin: 0 0 4px; }
 h2 { font-size: 1.1rem; margin: 28px 0 8px; }
 h3 { font-size: 1.05rem; margin: 0 0 6px; }
@@ -26,10 +28,11 @@ h4 { font-size: .78rem; text-transform: uppercase; letter-spacing: .05em; color:
 p { margin: 0 0 10px; }
 a { color: var(--accent); }
 .muted { color: var(--muted); font-size: .92rem; }
-.error { color: #b3261e; }
+.error { color: var(--danger); }
 button, select, input, textarea { font: inherit; color: inherit; }
 button { background: var(--accent); color: var(--accent-text); border: 0; border-radius: 6px; padding: 8px 14px; cursor: pointer; min-height: 40px; }
 button.quiet { background: transparent; color: var(--text); border: 1px solid var(--line); }
+button.danger { color: var(--danger); }
 button.on { background: var(--text); color: var(--bg); border-color: var(--text); }
 button:disabled { opacity: .5; cursor: default; }
 select, input[type=text], textarea { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; width: 100%; }
@@ -44,13 +47,12 @@ textarea { resize: vertical; min-height: 44px; }
 
 /* Explore */
 .chat { display: flex; flex-direction: column; gap: 10px; margin: 14px 0; }
-.msg { padding: 10px 14px; border-radius: 10px; white-space: pre-wrap; overflow-wrap: anywhere; max-width: 92%; }
-.msg.user { background: var(--accent); color: var(--accent-text); align-self: flex-end; }
-.msg.assistant { background: var(--panel); border: 1px solid var(--line); align-self: flex-start; }
+.msg { padding: 10px 14px; border-radius: 10px; overflow-wrap: anywhere; max-width: 92%; }
+.msg.user { background: var(--accent); color: var(--accent-text); align-self: flex-end; white-space: pre-wrap; }
+.msg.assistant { background: var(--panel); border: 1px solid var(--line); align-self: flex-start; white-space: normal; }
 .composer { display: flex; gap: 8px; align-items: flex-end; }
 .composer textarea { flex: 1; }
 form.idea label { display: block; font-size: .85rem; color: var(--muted); margin-top: 10px; }
-form.idea .inline { display: inline-flex; align-items: center; gap: 6px; margin-right: 16px; color: var(--text); font-size: 1rem; }
 
 /* Readings */
 .reading { border-top: 1px solid var(--line); padding: 12px 0; }
@@ -70,8 +72,6 @@ details summary { cursor: pointer; color: var(--accent); margin: 8px 0; }
 .stats td:first-child { white-space: normal; min-width: 11em; }
 
 /* Markdown in chat replies */
-.msg.assistant { white-space: normal; }
-.msg.user { white-space: pre-wrap; }
 .msg p, .msg ul, .msg ol, .msg pre, .msg blockquote, .msg h5 { margin: 0 0 8px; }
 .msg > :last-child { margin-bottom: 0; }
 .msg ul, .msg ol { padding-left: 1.3em; }

@@ -1,6 +1,0 @@
-fastapi>=0.115
-uvicorn>=0.30
-anthropic>=1.0
-jsonschema>=4.20
-numpy>=1.26
-fastembed>=0.4
